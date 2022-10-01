@@ -13,7 +13,7 @@ using namespace sf;
 
 class ComplexPlane {
 
-
+//Change the parameter variable names
     public:
     ComplexPlane(float aspectRatio);
     void zoomIn();
