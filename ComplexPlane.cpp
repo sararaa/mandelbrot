@@ -156,8 +156,3 @@ void ComplexPlane::iterationsToRGB(size_t count, Uint8& r, Uint8& g, Uint8& b){
 
 }
 
-Footer
-© 2022 GitHub, Inc.
-Footer navigation
-Terms
-Priv
