@@ -140,11 +140,6 @@ int main()
 			complex_p.loadText(messageText);
 		}
 
-		/*
-		****************************************
-		Draw the scene
-		****************************************
-		*/
 
 		// Clear everything from the last frame
 		window.clear();
