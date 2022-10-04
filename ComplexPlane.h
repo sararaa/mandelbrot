@@ -1,5 +1,5 @@
-#ifndef COMPLEXPLANE
-#define COMPLEXPLANE
+#ifndef COMPLEXPLANE_H
+#define COMPLEXPLANE_H
 
 #include <SFML/Graphics.hpp>
 #include <iostream>
@@ -10,10 +10,9 @@
 
 using namespace std;
 using namespace sf;
-
-class ComplexPlane {
-
-//Change the parameter variable names
+    
+class ComplexPlane
+{
     public:
     ComplexPlane(float aspectRatio);
     void zoomIn();
@@ -22,19 +21,14 @@ class ComplexPlane {
     View getView();
     void setMouseLocation(Vector2f coord);
     void loadText(Text& text);
-    size_t countIterations(Vector2f cord);
+    size_t countIterations(Vector2f coord);
     void iterationsToRGB(size_t count, Uint8& r, Uint8& g, Uint8& b);
 
-
     private:
-
-    Vector2f m_mouselocation;
-
+    Vector2f m_mouseLocation;
     View m_view;
-    
-    int m_zoomcount;
-    
-    float m_aspectratio;
+    int m_zoomCount;
+    float m_aspectRatio;
 
 
 };
@@ -45,8 +39,5 @@ const float BASE_HEIGHT = 4.0;
 const float BASE_ZOOM =0.5;
 
 enum class windowStatus{CALCULATING, DISPLAYING};
-
-
-
 
 #endif
