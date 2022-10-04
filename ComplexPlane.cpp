@@ -50,7 +50,7 @@ void ComplexPlane::loadText(Text& text){
     //text variable
     Vector2f point;
     point = m_view.getCenter();
-    stringstream string;
+    ostringstream string;
     string << "Mandelbrot Project!" << endl;
     string << "Center: (" << point.x << ", " << point.y << ")" << endl;
     string << "Cursor: (" << m_mouselocation.x << ", " << m_mouselocation.y << ")" << endl;
