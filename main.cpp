@@ -2,10 +2,13 @@
 #include <SFML/Graphics.hpp>
 #include <iostream>
 using namespace sf;
+
+//BY TAYLOR DURST AND SENARA MILLAWABANDARA
 int main()
 {
 
 //aspect ratio stuff
+	
 double width = VideoMode::getDesktopMode().width;
 double height = VideoMode::getDesktopMode().height;
 
