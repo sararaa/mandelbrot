@@ -53,7 +53,7 @@ void ComplexPlane::loadText(Text& text){
     ostringstream string;
     string << "Mandelbrot Project!" << endl;
     string << "Center: (" << point.x << ", " << point.y << ")" << endl;
-    string << "Cursor: (" << m_mouselocation.x << ", " << m_mouselocation.y << ")" << endl;
+    string << "Cursor: (" << m_mouseLocation.x << ", " << m_mouseLocation.y << ")" << endl;
     string << "Left click to Zoom in" << endl;
     string << "Right click to Zoom out" << endl;
 
