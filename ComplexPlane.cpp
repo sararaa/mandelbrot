@@ -1,50 +1,46 @@
 #include "ComplexPlane.h"
 
+using namespace std;
+using namespace sf;
 
-ComplexPlane::ComplexPlane(float aspectRatio){
-
-    m_aspectratio = aspectRatio; 
-    m_view.setSize(BASE_WIDTH, -BASE_HEIGHT*m_aspectratio);
+ComplexPlane::ComplexPlane(float aspectRatio)
+{
+    m_aspectRatio = aspectRatio;
+    m_view.setSize(BASE_WIDTH, -BASE_HEIGHT * m_aspectRatio); 
     m_view.setCenter(0.0, 0.0);
-    m_zoomcount=0;
-
+    m_zoomCount = 0;
+}
+View ComplexPlane::getView()
+{
+return m_view;
 }
 
-void ComplexPlane::zoomIn(){
-
-    m_zoomcount++;
-
-    float x= BASE_WIDTH*(pow(BASE_ZOOM, m_zoomcount));
-    float y= BASE_HEIGHT* m_aspectratio*(pow(BASE_ZOOM, m_zoomcount));
-
-    m_view.setSize(x,y);
-
+void ComplexPlane::zoomIn()
+{
+    m_zoomCount++;
+    float x_size = BASE_WIDTH * (pow(BASE_ZOOM, m_zoomCount));
+    float y_size = BASE_HEIGHT * m_aspectRatio * (pow(BASE_ZOOM, m_zoomCount));
+    m_view.setSize(x_size, y_size);
 }
 
-void ComplexPlane::zoomOut(){
-
-    m_zoomcount--;
-
-    float x= BASE_WIDTH*(pow(BASE_ZOOM, m_zoomcount));
-    float y= BASE_HEIGHT* m_aspectratio*(pow(BASE_ZOOM, m_zoomcount));
-
-    m_view.setSize(x,y);
-
+void ComplexPlane::zoomOut()
+{
+    m_zoomCount--;
+    float x_size = BASE_WIDTH * (pow(BASE_ZOOM, m_zoomCount));
+    float y_size = BASE_HEIGHT * m_aspectRatio * (pow(BASE_ZOOM, m_zoomCount));
+    m_view.setSize(x_size, y_size);
 }
 
-void ComplexPlane::setCenter(Vector2f coord){
+
+void ComplexPlane::setCenter(Vector2f coord)
+{
     m_view.setCenter(coord);
 }
 
-View ComplexPlane::getView()
+void ComplexPlane::setMouseLocation(Vector2f coord)
 {
-    return m_view;
+    m_mouseLocation = coord;
 }
-
-void ComplexPlane::setMouseLocation(Vector2f coord){
-    m_mouselocation= coord;
-}
-
 void ComplexPlane::loadText(Text& text){
 
     text.setString("cheese, Gromit!");
@@ -55,31 +51,24 @@ void ComplexPlane::loadText(Text& text){
 
 }
 
-size_t ComplexPlane::countIterations(Vector2f coord){
+size_t ComplexPlane::countIterations(Vector2f coord)
+{
+    complex<double> c(coord.x, coord.y);
+    complex<double> z(0,0);
+    size_t count = 0;
 
-    complex<double> c (coord.x,coord.y);
-    complex<double> z (0,0);
-    size_t count=0;
-    bool height_reached=false;
-
-    while (count<64 && !height_reached)
+    while(abs(z) < 2 && count < MAX_ITER)
     {
-        z=z*z+c;
-
-        if (abs(z) <= 2.0)
-        {
+        
+        z = z*z + c;
         count++;
-        }
-
     }
-
     return count;
-
 }
 
-//edit function parameters
-void ComplexPlane::iterationsToRGB(size_t count, Uint8& r, Uint8& g, Uint8& b){
-
+void ComplexPlane::iterationsToRGB(size_t count, Uint8& r, Uint8& g, Uint8& b)
+{
+    
     if (count == MAX_ITER)
     {
         r=0;
@@ -150,9 +139,5 @@ void ComplexPlane::iterationsToRGB(size_t count, Uint8& r, Uint8& g, Uint8& b){
 
 
 
-
-    
-
-
+   
 }
-
